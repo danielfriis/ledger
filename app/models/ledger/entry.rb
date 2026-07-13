@@ -83,6 +83,9 @@ module Ledger
       reversal.present?
     end
 
+    # True if this entry reverses another, rather than being an original posting.
+    def reverses? = reverses.present?
+
     # The total value moved (debits and credits are equal, so either side).
     def amount
       Money.new(lines.select(&:debit?).sum(&:amount_cents), currency)

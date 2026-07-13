@@ -16,6 +16,7 @@ module Ledger
 
     validates :amount_cents, numericality: { only_integer: true, other_than: 0 }
     validates :currency, presence: true
+    validate :account_accepts_postings, on: :create
 
     before_validation { self.currency ||= account&.currency || Ledger.default_currency }
     before_create :refuse_to_join_posted_entry
@@ -50,6 +51,17 @@ module Ledger
     end
 
     private
+
+    # New activity may not be posted to an archived account. A reversal is a
+    # correction of history rather than new activity, so it is always allowed —
+    # otherwise a mistaken entry could never be undone once its account was
+    # retired.
+    def account_accepts_postings
+      return if entry&.reverses?
+      return unless account&.archived?
+
+      errors.add(:account, "is archived and cannot receive new postings")
+    end
 
     # Allowed only while the entry is being posted for the first time. Once an
     # entry is persisted and no longer posting, no new lines may be attached.

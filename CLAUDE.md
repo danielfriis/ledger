@@ -16,6 +16,11 @@ balances when its lines sum to zero and the trial balance is always zero.
   objects, value objects, intention-revealing names, comments that explain *why*.
 - **Append-only.** Posted entries and lines are immutable; fix mistakes with
   `reverse!`, never edits or deletes.
+- **Accounts are reference data, not events.** They stay editable, with two
+  guards: the fields the balance is computed from (`type`, `contra`, `currency`)
+  lock once an account has postings, so history is never rewritten; and `name`/
+  `code` edits are logged to an append-only `AccountChange` trail. Retire an
+  account with `archive!` (reversible, refuses new postings), never delete.
 - **Money is integer cents** via the owned `Ledger::Money` value object — no floats.
 - **Tested and linted.** `mise exec ruby@3.3.6 -- bundle exec rake` runs Minitest
   + `rubocop-rails-omakase`; keep it green. (System Ruby is 2.6 — use mise's 3.3.6.)

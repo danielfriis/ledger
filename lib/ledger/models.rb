@@ -7,6 +7,7 @@ models = File.expand_path("../../app/models/ledger", __dir__)
 
 %w[
   account asset liability equity revenue expense
+  account_edit
   entry line
   balance_sheet income_statement
 ].each do |model|
