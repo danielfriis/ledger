@@ -6,7 +6,7 @@ module Ledger
   # balanced entry "sums to zero" and an account balance a single SQL SUM.
   #
   # Lines are append-only — see Ledger::Immutable.
-  class Line < ActiveRecord::Base
+  class Line < ApplicationRecord
     include Ledger::Immutable
 
     belongs_to :entry, class_name: "Ledger::Entry", inverse_of: :lines

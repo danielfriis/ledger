@@ -9,7 +9,7 @@ module Ledger
   #     e.debit  cash,    5_00
   #     e.credit revenue, 5_00
   #   end
-  class Entry < ActiveRecord::Base
+  class Entry < ApplicationRecord
     include Ledger::Immutable
 
     # What this entry was recorded for (an invoice, a payment, ...). Optional.

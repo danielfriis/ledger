@@ -4,11 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Ledger is a Rails-engine gem for append-only, double-entry bookkeeping — a modern
+Ledger is a Rails application for append-only, double-entry bookkeeping — a modern
 take on Plutus. Typed accounts (Asset, Liability, Equity, Revenue, Expense),
 balanced journal entries, integer-cent money, and reports. The one invariant:
 a line stores a **signed `amount_cents`** (debit +, credit −), so an entry
 balances when its lines sum to zero and the trial balance is always zero.
+
+The domain lives under the `Ledger` namespace in `app/models/ledger/`, with tables
+prefixed `ledger_` (`Ledger.table_name_prefix`). The `Ledger` module itself —
+`app/models/ledger.rb` — holds the domain config (`default_currency`,
+`trial_balance`, the error classes). `LedgerApp` is the Rails application module,
+kept deliberately separate so it never shadows the autoloaded `Ledger` namespace.
 
 ## How we build
 

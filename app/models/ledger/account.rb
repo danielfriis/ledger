@@ -15,7 +15,7 @@ module Ledger
   #
   # A +contra+ account flips its normal side — e.g. "Accumulated Depreciation"
   # is a contra-asset that carries a credit balance and nets against assets.
-  class Account < ActiveRecord::Base
+  class Account < ApplicationRecord
     # Set by each subclass to :debit or :credit.
     class_attribute :normal_balance, instance_writer: false
 

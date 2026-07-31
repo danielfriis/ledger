@@ -6,7 +6,7 @@ module Ledger
   # account is posted to, so they never appear here — only the safe, cosmetic
   # edits (name, code) are logged, giving a rename or re-code a traceable history
   # without touching the account itself.
-  class AccountEdit < ActiveRecord::Base
+  class AccountEdit < ApplicationRecord
     include Ledger::Immutable
 
     belongs_to :account, class_name: "Ledger::Account"
