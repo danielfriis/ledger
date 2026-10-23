@@ -28,8 +28,8 @@ kept deliberately separate so it never shadows the autoloaded `Ledger` namespace
   `code` edits are logged to an append-only `AccountChange` trail. Retire an
   account with `archive!` (reversible, refuses new postings), never delete.
 - **Money is integer cents** via the owned `Ledger::Money` value object — no floats.
-- **Tested and linted.** `mise exec ruby@3.3.6 -- bundle exec rake` runs Minitest
-  + `rubocop-rails-omakase`; keep it green. (System Ruby is 2.6 — use mise's 3.3.6.)
+- **Tested and linted.** `mise exec ruby@3.3.13 -- bundle exec rake` runs Minitest
+  + `rubocop-rails-omakase`; keep it green. (System Ruby is 2.6 — use mise's 3.3.13.)
 
 ## Keep this file alive
 

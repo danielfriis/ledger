@@ -29,7 +29,7 @@ bin/rails db:prepare      # create the database, run migrations, load seeds
 bin/rails db:seed         # a tiny sample chart of accounts + opening entries
 ```
 
-Ruby is pinned in `.ruby-version` (3.3.6). The one command that runs the whole
+Ruby is pinned in `.ruby-version` (3.3.13). The one command that runs the whole
 check suite — Minitest **and** RuboCop — is:
 
 ```bash
